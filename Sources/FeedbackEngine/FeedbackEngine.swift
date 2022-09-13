@@ -10,7 +10,7 @@ import StoreKit
 
 
 @available(macOS 13.0, *)
-struct FeedbackViewModifier: ViewModifier {
+public struct FeedbackViewModifier: ViewModifier {
     
     @State private var appNameForEmail: String = ""
     
@@ -29,9 +29,10 @@ struct FeedbackViewModifier: ViewModifier {
         @Environment(\.requestReview) var requestReview
     #endif
     
+    public init(){}
     
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .onAppear() {
                 
@@ -116,14 +117,14 @@ struct FeedbackViewModifier: ViewModifier {
 }
 
 
-extension Bundle {
+public extension Bundle {
     var displayName: String? {
         return object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
     }
 }
 
 
-extension View {
+public extension View {
     func feedbackEngine() -> some View {
         modifier(FeedbackViewModifier())
     }
